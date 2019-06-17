@@ -12,13 +12,11 @@ var globals = require('./globals');
 const csvtojson = require('csvtojson');
 const Horseman = require('node-horseman');
 
-var socialblade = require('socialblade-data');
-
 // ***********
 // Processes
 // ***********
 // LOADING
-return csvtojson().fromFile('./server/io/influencerlist.csv').then((results)=>{
+return csvtojson().fromFile('./server/io/influencerlist.csv').then((results) => {
   console.log(results);
   results.forEach((result) => {
 		result.metrics = {
@@ -86,41 +84,19 @@ return csvtojson().fromFile('./server/io/influencerlist.csv').then((results)=>{
     promises.push(twitter);
 
     // SOCIAL BLADE
-    var runningviews = scrape('https://socialblade.com/youtube/user/' + influencer.Socialblade, '#afd-header-views-30d').then((result) => {
+    var runningviews = scrape('https://socialblade.com/youtube/channel/' + influencer.Youtube, '#afd-header-views-30d').then((result) => {
       console.log('SOCIALBLADE');
       result = result.replace(/\s+/g, '');
       console.log(result);
+      if(result == '') {
+        result = -1;
+      }
       influencer.metrics.lastmonthviews = result;
       return result;
     }).catch((error) => {
       console.log(error);
     });
     promises.push(runningviews);
-
-    // got('https://socialblade.com/youtube/user/' + influencer.Socialblade, { json: true }).then((response) => {
-    //   console.log('TWITTER');
-    //   console.log(response.body);
-    //   console.log(response.body);
-    //
-    //   return response.body;
-    // }).catch((error) => {
-    //   console.log(error);
-    // });
-    // promises.push(runningviews);
-    // var runningviews = new Promise((resolve, reject) => {
-    //   socialblade.loadChannelData(influencer.Socialblade, function(err, data) {
-    //     if(err) {
-    //       console.log(err);
-    //       reject(err);
-    //     } else {
-    //       console.log('SOCIALBLADE');
-    //       console.log(data);
-    //       //influencer.metrics.lastmonthviews = data;
-    //       resolve(data);
-    //     }
-    //   });
-    // });
-    // promises.push(runningviews);
   });
 
   // EXPORT

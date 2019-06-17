@@ -1,3 +1,4 @@
 Influencer: Youtube Subscribers, Facebook Page Likes, Instagram Followers, Twitter Followers, Total Youtube Views, Youtube Views Past 30 days
-BabyLeague: -1, 22,059, 16241, 12929, -1, -22,567,860, 
-CandidMommy: 161295, 11,182, 14435, -1, 51100089, 339,120, 
+BabyLeague: -1, 22,059, 16241, 12929, -1, , 
+CandidMommy: 161297, 11,182, 14435, -1, 51101388, 340,260, 
+Epic10List: 63192, 273, -1, 409, 18519154, 80,880, 
