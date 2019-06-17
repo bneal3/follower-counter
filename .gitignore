@@ -1,4 +1,4 @@
 node_modules/
 package-lock.json
 playground/
-config/config.json
+server/config/config.json
